@@ -15,4 +15,13 @@ class UserInfo:
 				"phone_number": self.phone_number,
 				"longtitude": self.longtitude,
 				"latitude": self.latitude,
-				"time": self.time}
+				"time received": self.time}
+
+
+	def JSON_data(self) -> dict:
+		return {"longtitude": self.longtitude,
+				"latitude": self.latitude,
+				"time received": self.time} 
+
+	def has_location(self) -> bool:
+		return self.latitude is not None or self.longtitude is not None 

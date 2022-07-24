@@ -3,7 +3,8 @@ from twilio.twiml.messaging_response import MessagingResponse
 from src.userinfo import UserInfo # a class contains info about the user 
 from datetime import datetime # to get retrieve current time of the user 
 import src.messages as m # import all the constants 
-
+import os # use to manipulate folders and path 
+import json # use to handle json files between various applications 
 
 # initalize the flask application
 app = Flask(__name__)
@@ -14,7 +15,8 @@ def chatbot():
 	# receive user's paramater
 	args = request.values
 	current_time = datetime.now().strftime("%H:%M:%S")
-	user_info = UserInfo(args.get('Body'),
+	# initalize the user info
+	user_info = UserInfo(args.get('Body').lower(),
 						 args.get('ProfileName'),
 						 args.get('From').split(":")[1],
 						 args.get('Longtitude'),
@@ -22,11 +24,37 @@ def chatbot():
 						 current_time)
 	
 
-
-
+	# making the response and message object to respond back 
 	messaging_response = MessagingResponse()
 	message = messaging_response.message()
-	message.body(m.introduction)
+
+
+	# check if user exists in the system
+	# this program is being run on Macbook, so we use / to direct path
+	if os.path.exists(f"uploads/{user_info.phone_number}"):
+		'''exists in the system'''
+		if user_info.has_location():
+			with open(f"uploads/{user_info.phone_number}/location.json", "w") as path:
+				json.dump(user_info.JSON_data(), path, indent=4, sort_keys=True)
+		else:
+
+	else:
+		'''does not exist'''
+		if user_info.body == 'y':
+			'''want to use our bot, so then create a folder for user'''
+			try:
+				with open(f"uploads/{user_info.phone_number}", "w") as path:
+					print("a folder has been created for the user")
+			except:
+					print("unsuccessful folder creation")
+		elif user_info.body == 'n': 
+			'''does not want to use our bot'''
+			message.body(m.goodbye)
+		elif user_info.body == 'hi' or user_info.body == 'hello':
+			message.body(m.introduction)
+		else: 
+			message.body(m.start_conversation)
+
 
 	# string representation of the response
 	return str(messaging_response)
