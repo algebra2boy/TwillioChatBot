@@ -24,4 +24,4 @@ class UserInfo:
 				"time received": self.time} 
 
 	def has_location(self) -> bool:
-		return self.latitude is not None or self.longtitude is not None 
+		return self.latitude is not None and self.longtitude is not None 

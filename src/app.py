@@ -14,12 +14,13 @@ app = Flask(__name__)
 def chatbot():
 	# receive user's paramater
 	args = request.values
-	current_time = datetime.now().strftime("%H:%M:%S")
+	print(args)
+	current_time = datetime.now().strftime("%H:%M:%S %m/%d/%Y")
 	# initalize the user info
 	user_info = UserInfo(args.get('Body').lower(),
 						 args.get('ProfileName'),
 						 args.get('From').split(":")[1],
-						 args.get('Longtitude'),
+						 args.get('Longitude'),
 						 args.get('Latitude'),
 						 current_time)
 	
@@ -36,15 +37,14 @@ def chatbot():
 		if user_info.has_location():
 			with open(f"uploads/{user_info.phone_number}/location.json", "w") as path:
 				json.dump(user_info.JSON_data(), path, indent=4, sort_keys=True)
-		else:
-
 	else:
 		'''does not exist'''
 		if user_info.body == 'y':
 			'''want to use our bot, so then create a folder for user'''
+			message.body(m.share_location)
 			try:
-				with open(f"uploads/{user_info.phone_number}", "w") as path:
-					print("a folder has been created for the user")
+				os.mkdir(f"uploads/{user_info.phone_number}")
+				print("a folder has been created for the user")
 			except:
 					print("unsuccessful folder creation")
 		elif user_info.body == 'n': 
@@ -54,6 +54,12 @@ def chatbot():
 			message.body(m.introduction)
 		else: 
 			message.body(m.start_conversation)
+
+
+	# choose from a list of options
+	message.body(m.options)
+	options
+
 
 
 	# string representation of the response
