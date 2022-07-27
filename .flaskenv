@@ -4,3 +4,4 @@ export FLASK_DEBUG=TRUE
 
 export src.userinfo.py
 export src.messages.py
+export src.API.py

@@ -4,10 +4,17 @@ from src.userinfo import UserInfo # a class contains info about the user
 from datetime import datetime # to get retrieve current time of the user 
 import src.messages as m # import all the constants 
 import os # use to manipulate folders and path 
-import json # use to handle json files between various applications 
+import json # use to handle json files between various applications
+import src.API as API # all the API are here 
+from dotenv import load_dotenv, find_dotenv # set up environmental variables in .env
+
 
 # initalize the flask application
 app = Flask(__name__)
+
+# search from .env file and looks for keys
+load_dotenv(find_dotenv())
+
 
 # make sure that you fix the typos and put the header 'methods'
 @app.route('/sms', methods=['POST'])
@@ -76,13 +83,16 @@ def chatbot():
 			longtitude = data.get('longtitude')
 			time_rec = data.get('time received')
 	except:
-			message.body(m.location_json_not_exist)
-			return str(messaging_response)
+		message.body(m.location_json_not_exist)
+		return str(messaging_response)
 
 	
 	# chat bot logic
-	# if user_info.body == '1':
-
+	if user_info.body == '1': # OPENWEATHER
+		weather_APIKEY = os.getenv("OpenWeatherAPI_KEY")
+		weather = API.get_weather_info(latitude, longtitude, weather_APIKEY)
+		message.body(weather)
+		return str(messaging_response) 
 	# elif user_info.body == '2':
 
 	# elif user_info.body == '3':
