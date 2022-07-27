@@ -68,21 +68,28 @@ def chatbot():
 
 
 	# start getting the JSON data from user's folder 
-	with open(f"uploads/{user_info.phone_number}/location.json", "r") as file:
-		latitude = file.get('latitude')
-		longtitude = file.get('longtitude')
-		time_rec = file.get('time received')
+	try:
+		with open(f"uploads/{user_info.phone_number}/location.json", "r") as file:
+			# json.load() accepts file object, parses the JSON data, populates a Python dictionary with the data and returns it back to you
+			data = json.load(file)
+			latitude = data.get('latitude')
+			longtitude = data.get('longtitude')
+			time_rec = data.get('time received')
+	except:
+			message.body(m.location_json_not_exist)
+			return str(messaging_response)
 
+	
 	# chat bot logic
-	if user_info.body == '1':
+	# if user_info.body == '1':
 
-	elif user_info.body == '2':
+	# elif user_info.body == '2':
 
-	elif user_info.body == '3':
+	# elif user_info.body == '3':
 
-	elif user_info.body == '4':
+	# elif user_info.body == '4':
 
-	else:
+	# else:
 	
 
 
