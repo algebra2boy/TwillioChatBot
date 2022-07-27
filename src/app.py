@@ -35,8 +35,12 @@ def chatbot():
 	if os.path.exists(f"uploads/{user_info.phone_number}"):
 		'''exists in the system'''
 		if user_info.has_location():
-			with open(f"uploads/{user_info.phone_number}/location.json", "w") as path:
-				json.dump(user_info.JSON_data(), path, indent=4, sort_keys=True)
+			with open(f"uploads/{user_info.phone_number}/location.json", "w") as file:
+				json.dump(user_info.JSON_data(), file, indent=4, sort_keys=True)
+			message.body(m.location_received)
+			# After receiving the location, start showing options
+			message.body(m.options)
+			return str(messaging_response)
 	else:
 		'''does not exist'''
 		if user_info.body == 'y':
@@ -46,20 +50,40 @@ def chatbot():
 				os.mkdir(f"uploads/{user_info.phone_number}")
 				print("a folder has been created for the user")
 			except:
-					print("unsuccessful folder creation")
+				print("unsuccessful folder creation")
+			return str(messaging_response)
+
 		elif user_info.body == 'n': 
 			'''does not want to use our bot'''
 			message.body(m.goodbye)
+			return str(messaging_response)
+
 		elif user_info.body == 'hi' or user_info.body == 'hello':
 			message.body(m.introduction)
+			return str(messaging_response)
+
 		else: 
 			message.body(m.start_conversation)
+			return str(messaging_response)
 
 
-	# choose from a list of options
-	message.body(m.options)
-	options
+	# start getting the JSON data from user's folder 
+	with open(f"uploads/{user_info.phone_number}/location.json", "r") as file:
+		latitude = file.get('latitude')
+		longtitude = file.get('longtitude')
+		time_rec = file.get('time received')
 
+	# chat bot logic
+	if user_info.body == '1':
+
+	elif user_info.body == '2':
+
+	elif user_info.body == '3':
+
+	elif user_info.body == '4':
+
+	else:
+	
 
 
 	# string representation of the response
