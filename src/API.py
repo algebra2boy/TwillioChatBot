@@ -8,7 +8,8 @@ def get_weather_info(latitude:str, longtitude: str, weather_APIKEY: str) -> str:
 		weather_info.raise_for_status()
 		# Code here will only run if the request is successful (200/201)
 		return weather_info.json()
-	except requests.exceptions.HTTPError as errh:
+	except requests.exceptions.HTTPError:
 		return m.weatherNOTFOUND
 
 
+#TODO

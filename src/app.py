@@ -94,7 +94,7 @@ def chatbot():
 		message.body(weather)
 		return str(messaging_response) 
 	# elif user_info.body == '2':
-
+		googlemapAPI = os.getenv('GOOGLEMAPIKEY')
 	# elif user_info.body == '3':
 
 	# elif user_info.body == '4':
