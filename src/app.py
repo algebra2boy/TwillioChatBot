@@ -93,10 +93,18 @@ def chatbot():
 		weather = API.get_weather_info(latitude, longtitude, weather_APIKEY)
 		message.body(weather)
 		return str(messaging_response) 
-	# elif user_info.body == '2':
+	elif user_info.body == '2': # DIRECTIONS
 		googlemapAPI = os.getenv('GOOGLEMAPIKEY')
-	# elif user_info.body == '3':
+		# get the user's location, destination, mode of transport
+		message.body(m.ask_destination)
+		destination = user_info.body
+		message.body("What is your mode of transport? ")
+		transport = user_info.body
+		message.body(f"you are at {destination} by {transport}")
+		return str(messaging_response)
+		#message.body("You are at {}".format(user_info.body))
 
+	# elif user_info.body == '3':
 	# elif user_info.body == '4':
 
 	# else:

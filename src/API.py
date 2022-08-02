@@ -1,3 +1,4 @@
+
 import requests
 import src.messages as m # import all the constants and messages
 
@@ -10,6 +11,10 @@ def get_weather_info(latitude:str, longtitude: str, weather_APIKEY: str) -> str:
 		return weather_info.json()
 	except requests.exceptions.HTTPError:
 		return m.weatherNOTFOUND
+
+
+
+
 
 
 #TODO
