@@ -1,6 +1,8 @@
 {
-    "latitude": "42.3785285949707",
-    "longtitude": "-71.06903076171875",
+    "destination": "jeff's sofa",
+    "latitude": "42.37849426269531",
+    "longtitude": "-71.06903839111328",
     "option": 2,
-    "time received": "15:31:40 08/02/2022"
+    "time received": "18:23:03 08/02/2022",
+    "tranportation": "Train"
 }

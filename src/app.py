@@ -116,7 +116,7 @@ def chatbot():
 				except FileNotFound:
 						message.body(m.location_json_not_exist)
 				else:
-					message.body('How would you like to get there\t\t\t\t1.   Car\n2.   Walk\n3.   Train\n4.   Bicycle')
+					message.body('How would you like to get there\t\t\t\ta.   Car\nb.   Walk\nc.   Train\nd.   Bicycle')
 			return str(messaging_response) 
 		elif data.get('destination') != None and data.get('mode') == None: 
 			# accepting a single letter (a,b,c,d)
@@ -130,16 +130,22 @@ def chatbot():
 					tranportation = "Train"
 				elif mode == 'e':
 					tranportation = "Bicycle"
-				else:
+				else: 
 					tranportation = None
 					message.body("not an option")
-				data['tranportation'] = tranportation
+				data['mode'] = tranportation
 				with open(f"uploads/{user_info.phone_number}/location.json", "w") as file:
 						json.dump(data, file, indent=4, sort_keys=True)
+
+				if data.get('destination') != None and data.get('mode') != None: # this is when we call the API 
+					# this is where jeff puts his code here
+					# 1. get the API key using os 
+					# 2. make a function in API.py to call the API 
+					# 3. message.body(whatever message you want to return the USER)
+					# 4. return str(messaging_response)
 			else:
 				message.body("Not valid letter (must be a,b,c,d)")
 			return str(messaging_response)
-		elif data.get('destination') != None and data.get('mode') != None: 
 
 
 		# return str(messaging_response) 

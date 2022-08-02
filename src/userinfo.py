@@ -30,14 +30,5 @@ class UserInfo:
 	def has_location(self) -> bool:
 		return self.latitude is not None and self.longtitude is not None 
 
-	def store_option(self) -> None:
-		try:
-			self.option = int(self.body)
-		except:
-			raise ValueError("The option is not an integer")
-		else:
-			with open(f"uploads/{self.phone_number}/location.json", "w") as file:
-				json.dump(self.JSON_data(), file, indent=4, sort_keys=True)
-
 
 
