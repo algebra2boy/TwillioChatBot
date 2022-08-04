@@ -1,4 +1,3 @@
-
 import requests
 import googlemaps
 import src.messages as m  # import all the constants and messages
@@ -15,13 +14,6 @@ def get_weather_info(latitude: str, longitude: str, weather_apikey: str) -> str:
         return m.weatherNOTFOUND
 
 
-<<<<<<< Updated upstream
-
-
-
-
-#TODO
-=======
 def get_address(lat, lon, key):
     """receives latitude, longitude, and googlemapsapi key to return address of a location"""
     geo = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&key={key}").json()
@@ -38,4 +30,4 @@ def get_directions_info(lat, lon, destination, mode, key):
         f" ({directions_result[0]['legs'][0]['distance']['text']}) by {mode.lower()}"
 
 # TODO
->>>>>>> Stashed changes
+
