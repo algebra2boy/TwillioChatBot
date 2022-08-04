@@ -1,8 +1,8 @@
 {
-    "destination": "jeff's sofa",
-    "latitude": "42.37849426269531",
-    "longtitude": "-71.06903839111328",
+    "destination": "11 mason street, malden, ma",
+    "latitude": "42.3785285949707",
+    "longtitude": "-71.06912994384766",
+    "mode": "Car",
     "option": 2,
-    "time received": "18:23:03 08/02/2022",
-    "tranportation": "Train"
+    "time received": "21:55:05 08/03/2022"
 }

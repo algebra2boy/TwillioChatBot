@@ -138,11 +138,14 @@ def chatbot():
 						json.dump(data, file, indent=4, sort_keys=True)
 
 				if data.get('destination') != None and data.get('mode') != None: # this is when we call the API 
-					# this is where jeff puts his code here
 					# 1. get the API key using os 
+					google_maps_api_key = os.getenv("GOOGLEMAPAPIKEY")
 					# 2. make a function in API.py to call the API 
+					directions = API.get_directions_info(data.get("latitude"), data.get("longitude"), data.get('destination'), data.get('mode'), google_maps_api_key)
 					# 3. message.body(whatever message you want to return the USER)
-					# 4. return str(messaging_response)
+					message.body(directions)
+					
+					return str(messaging_response)
 			else:
 				message.body("Not valid letter (must be a,b,c,d)")
 			return str(messaging_response)
