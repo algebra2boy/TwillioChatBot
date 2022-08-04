@@ -7,3 +7,6 @@ options = "Option Menu\n1.Weather\n2.Direction"
 location_received = "We have received your Location, now you can choose!"
 location_json_not_exist = "JSON location data do not exist in our system"
 weatherNOTFOUND = "Weather request is not successful"
+
+ask_destination = "Where would you like to go?"
+directionsNOTFOUND = "Diretion request is not successful"
