@@ -1,5 +1,8 @@
 {
-    "latitude": "42.37845230102539",
-    "longtitude": "-71.06904602050781",
-    "time received": "12:10:50 07/27/2022"
+    "destination": "11 mason street, malden, ma",
+    "latitude": "42.3785285949707",
+    "longtitude": "-71.06912994384766",
+    "mode": "Car",
+    "option": 2,
+    "time received": "21:55:05 08/03/2022"
 }

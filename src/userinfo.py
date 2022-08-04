@@ -1,3 +1,4 @@
+import json
 class UserInfo:
 
     def __init__(self, body, name, phone_number, longitude, latitude, time):
@@ -26,3 +27,4 @@ class UserInfo:
 
     def has_location(self) -> bool:
         return self.latitude is not None and self.longitude is not None
+       
